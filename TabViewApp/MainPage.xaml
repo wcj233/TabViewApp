@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="TabViewApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TabViewApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <Button Click="Button_Click">click</Button>
+        <controls:TabView x:Name="Tabs"
+                   CanCloseTabs="True"
+                   IsCloseButtonOverlay="False"
+                   CanDragItems="True"
+                   CanReorderItems="False"
+                   AllowDrop="False"
+                   SelectedTabWidth="200" ItemsSource="{x:Bind Lists,Mode=OneWay}" Margin="0,60,0,0" TabNavigation="Local" TabFocusNavigation="Local">
+            <controls:TabView.ItemHeaderTemplate>
+                <DataTemplate x:DataType="local:MyViewModel">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="20" Height="20" Source="{Binding IconUrl}" Margin="0,0,10,0"></Image>
+                        <TextBlock Text="{Binding HeaderName}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </controls:TabView.ItemHeaderTemplate>
+            <controls:TabView.ItemTemplate>
+                <DataTemplate x:DataType="local:MyViewModel">
+                    <WebView Source="{Binding WebUrl}"></WebView>
+                </DataTemplate>
+            </controls:TabView.ItemTemplate>
+        </controls:TabView>
+    </StackPanel>
+</Page>
